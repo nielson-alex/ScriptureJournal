@@ -1,0 +1,52 @@
+﻿@page
+@model ScriptureJournalAlexNielson.Pages.Scriptures.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ScriptureJournal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptureJournal.VerseNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptureJournal.VerseNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptureJournal.ChapterNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptureJournal.ChapterNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptureJournal.Book)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptureJournal.Book)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptureJournal.DateAdded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptureJournal.DateAdded)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptureJournal.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptureJournal.Note)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ScriptureJournal.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

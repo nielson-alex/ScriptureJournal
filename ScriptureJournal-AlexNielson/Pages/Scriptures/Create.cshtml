@@ -1,0 +1,54 @@
+﻿@page
+@model ScriptureJournalAlexNielson.Pages.Scriptures.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>ScriptureJournal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ScriptureJournal.VerseNumber" class="control-label"></label>
+                <input asp-for="ScriptureJournal.VerseNumber" class="form-control" />
+                <span asp-validation-for="ScriptureJournal.VerseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScriptureJournal.ChapterNumber" class="control-label"></label>
+                <input asp-for="ScriptureJournal.ChapterNumber" class="form-control" />
+                <span asp-validation-for="ScriptureJournal.ChapterNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScriptureJournal.Book" class="control-label"></label>
+                <input asp-for="ScriptureJournal.Book" class="form-control" />
+                <span asp-validation-for="ScriptureJournal.Book" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScriptureJournal.DateAdded" class="control-label"></label>
+                <input asp-for="ScriptureJournal.DateAdded" class="form-control" />
+                <span asp-validation-for="ScriptureJournal.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScriptureJournal.Note" class="control-label"></label>
+                <input asp-for="ScriptureJournal.Note" class="form-control" />
+                <span asp-validation-for="ScriptureJournal.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
