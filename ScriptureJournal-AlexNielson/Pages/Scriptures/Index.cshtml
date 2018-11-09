@@ -1,8 +1,13 @@
 ﻿@page
 @model ScriptureJournalAlexNielson.Pages.Scriptures.IndexModel
+@using WebMatrix.Data;
+@using WebGridMvc;
 
 @{
     ViewData["Title"] = "Index";
+    //var db = Database.Open("WebPagesMovies");
+    //var selectedData = db.Query("SELECT * FROM Movies");
+    //var grid = new WebGrid<dynamic>(source: selectedData);
 }
 
 <h2>Index</h2>
@@ -16,8 +21,17 @@
         <select asp-for="ScripturesBooks" asp-items="Model.Books">
             <option value="">All</option>
         </select>
+        <select>
+            <option name="date">date</option>
+        </select>
 
-        Book: <input type="text" name="SearchString">
+        @*<select asp-for="ScritureNotes" asp-items="Model.Books">
+                <option value="">All</option>
+            </select>*@
+
+        Search by Book: <input type="text" name="SearchStringBook">
+        Search by Note: <input type="text" name="SearchStringNote">
+        Search by Note: <input type="text" name="SortDate">
         <input type="submit" value="Filter" />
     </p>
 </form>
@@ -26,13 +40,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ScriptureJournal[0].VerseNumber)
+                @Html.DisplayNameFor(model => model.ScriptureJournal[0].Book)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ScriptureJournal[0].ChapterNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ScriptureJournal[0].Book)
+                @Html.DisplayNameFor(model => model.ScriptureJournal[0].VerseNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ScriptureJournal[0].DateAdded)
@@ -48,13 +62,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VerseNumber)
+                    @Html.DisplayFor(modelItem => item.Book)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ChapterNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Book)
+                    @Html.DisplayFor(modelItem => item.VerseNumber)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateAdded)

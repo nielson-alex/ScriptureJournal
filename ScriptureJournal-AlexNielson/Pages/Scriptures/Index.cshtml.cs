@@ -20,33 +20,53 @@ namespace ScriptureJournalAlexNielson.Pages.Scriptures
         }
 
         public IList<ScriptureJournal> ScriptureJournal { get;set; }
-        public string SearchString { get; set; }
+        public string SearchStringBook { get; set; }
         public SelectList Books { get; set; }
         public string ScripturesBooks { get; set; }
-
-        public async Task OnGetAsync(string book, string searchString)
+        public string SearchStringNote { get; set; }
+        public SelectList Notes { get; set; }
+        public string ScriptureNotes { get; set; }
+        public string SortDate { get; set; }
+        public async Task OnGetAsync(string book, string note, string searchStringBook, string searchStringNote)
         {
-            //// Use LINQ to get list of genres.
-            //IQueryable<string> bookQuery = from s in _context.ScriptureJournal
-            //                                orderby s.Book
-            //                                select s.Book;
+            // Use LINQ to get list of books.
+            IQueryable<string> bookQuery = from s in _context.ScriptureJournal
+                                           orderby SortDate
+                                           select s.Book;
+
+            IQueryable<string> noteQuery = from s in _context.ScriptureJournal
+                                           orderby s.Note
+                                           select s.Note;
 
             var scriptures = from s in _context.ScriptureJournal
                          select s;
 
-            if (!String.IsNullOrEmpty(searchString))
+
+            if (!String.IsNullOrEmpty(searchStringBook))
             {
-                scriptures = scriptures.Where(s => s.Book.Contains(searchString));
+                scriptures = scriptures.Where(s => s.Book.Contains(searchStringBook));
             }
 
-            //if (!String.IsNullOrEmpty(book))
-            //{
-            //    books = books.Where(x => x.Book == book);
-            //}
+            if (!String.IsNullOrEmpty(book))
+            {
+                scriptures = scriptures.Where(x => x.Book == book);
+            }
 
-            //Books = new SelectList(await bookQuery.Distinct().ToListAsync());
+            if (!String.IsNullOrEmpty(searchStringNote))
+            {
+                scriptures = scriptures.Where(s => s.Note.Contains(searchStringNote));
+            }
+
+            if (!String.IsNullOrEmpty(note))
+            {
+                scriptures = scriptures.Where(x => x.Note == note);
+            }
+
+            Books = new SelectList(await bookQuery.Distinct().ToListAsync());
+            Notes = new SelectList(await noteQuery.Distinct().ToListAsync());
             ScriptureJournal = await scriptures.ToListAsync();
-            SearchString = searchString;
+            SearchStringBook = searchStringBook;
+            SearchStringNote = searchStringNote;
         }
     }
 }
